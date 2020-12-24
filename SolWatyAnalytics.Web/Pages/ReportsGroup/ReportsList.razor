@@ -1,0 +1,47 @@
+﻿@page "/report/daily"
+@using SolWatyAnalytics.BLL.Models;
+@using SolWatyAnalytics.Web.Services;
+@using System.Net.Http
+@inject HttpClient httpClient
+
+<h3>Daily Report</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        <a id="btnGenerate" class="btn btn-success" href="http://localhost:44306/api/StationKantorPusat/DailyReport/" target="_blank">
+            Daily Report
+        </a>
+    </div>
+
+    @*<EditForm Model="StationX">*@
+        <label for="nameStation" class="col-sm-2 col-form-label">Date</label>
+        <div class="col-sm-10">
+            <InputDate Value="DateTime.Today" />
+        </div>
+        <div class="col-md-4">
+            <a id="btnGenerate" class="btn btn-dark" href="http://localhost:44306/api/StationKantorPusat/DailyReport/" target="_blank">
+                Daily Report 2
+            </a>
+        </div>
+
+        <button type="submit">Click</button>
+    @*</EditForm>*@
+</div>
+
+@code {
+    public StationX StationX { get; set; }
+    //public StationXService stationXService { get; set; }
+
+    //[Parameter]
+    //public string tanggal { get; set; }
+
+    //private string selectedDate;
+
+    //private void submitt()
+    //{
+    //    var submitt =httpClient.BaseAddress.stationXService("http://localhost:44306/api/StationKantorPusat/DailyReport"):
+    //}
+
+    //protected override async Task OnInitializedAsync() =>
+    //    todoItems = await httpClient.GetAsync<StationXService[]>("api/TodoItems");
+}

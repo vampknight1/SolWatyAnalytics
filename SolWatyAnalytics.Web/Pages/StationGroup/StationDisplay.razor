@@ -1,0 +1,13 @@
+﻿@inherits StationDisplayBase
+
+<tr>
+    <td>
+        <a href="@($"/master/station/edit/{Station.Id}")" class=" btn btn-info">Edit</a>
+        <button type="button" class="btn btn-danger" @onclick="Delete_Click">DEL</button>
+    </td>
+    <td>@Station.StationUid</td>
+    <td>@Station.NameStation</td>
+    <td>@Station.AreaCode</td>
+</tr>
+
+<ConfirmModal ConfirmationChanged="Confirmation_Click" @ref="DeleteConfirmation"></ConfirmModal>

@@ -1,0 +1,17 @@
+﻿@page "/master/station/detail/{id}"
+@inherits StationDetailBase
+
+<h3>Station Detail</h3>
+
+<div class="form-row">
+    <h5>UID</h5>  :  @Station.StationUid
+    <h5>Station Name</h5>  :  @Station.NameStation
+    <h5>Area Name</h5>  :  @Station.AreaCode
+    <h5>Created At</h5> :  @Station.CreatedAt
+    <h5>Updated At</h5> :  @Station.UpdatedAt
+    <h5>Updated By</h5> :  @Station.UpdatedBy
+</div>
+
+<a href="/master/area" class="btn btn-primary">Back</a>
+<a href="@($"/master/station/edit/{Station.Id}")" class=" btn btn-info">Edit</a>
+<a href="#" class="btn btn-danger">Delete</a>

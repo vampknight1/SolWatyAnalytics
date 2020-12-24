@@ -1,0 +1,21 @@
+﻿@page "/master/customer/details/{id}"
+@inherits CustomerDetailBase
+
+<h3>Customer Detail</h3>
+
+<label asp-for="@Customer.Uid"></label> @Customer.Uid
+<br />
+<label asp-for="@Customer.CompanyName"></label> @Customer.CompanyName
+<br />
+<label asp-for="@Customer.Address"></label> @Customer.Address
+<br />
+<label asp-for="@Customer.City"></label> @Customer.City
+<br />
+<label asp-for="@Customer.ContactName"></label> @Customer.ContactName
+<br />
+<label asp-for="@Customer.Email"></label> @Customer.Email
+<br />
+
+<a href="/customer" class="btn btn-primary">Back</a>
+<a href="/" class="btn btn-info">Back to Root Page</a>
+<a href="#" class="btn btn-danger">Delete</a>

@@ -1,0 +1,62 @@
+﻿@page "/station/stationx"
+@inherits StationxAnalyticsListBase
+@using SolWatyAnalytics.BLL.Models
+
+<h3>Station X Analytics List</h3>
+
+@if (StationXs == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    @*@foreach (var item in StationXs)
+        {
+            @item.Uid
+        }*@
+
+    @*<DataGrid TItem="StationX" Data="StationXs" Sortable="true" Filterable="true" Editable="true" ShowPager="true" PageSize="5">
+            <ChildContent>
+                <DataGridColumn TItem="StationX" Field="@nameof(StationX.TimeStamp2)" Caption="Datetime Created" Editable="true"></DataGridColumn>
+                <DataGridColumn TItem="StationX" Field="@nameof(StationX.Ph)" Caption="pH" Editable="true"></DataGridColumn>
+                <DataGridColumn TItem="StationX" Field="@nameof(StationX.Nh3n)" Caption="NH3-N" Editable="true"></DataGridColumn>
+                <DataGridColumn TItem="StationX" Field="@nameof(StationX.Cod)" Caption="COD" Editable="true"></DataGridColumn>
+                <DataGridColumn TItem="StationX" Field="@nameof(StationX.Tss)" Caption="TSS" Editable="true"></DataGridColumn>
+                <DataGridColumn TItem="StationX" Field="@nameof(StationX.Debit)" Caption="Debit" Editable="true"></DataGridColumn>
+            </ChildContent>
+
+            <EmptyTemplate>
+                <div class="box">
+                    No Data are found !
+                </div>
+            </EmptyTemplate>
+        </DataGrid>*@
+
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Ph</th>
+                <th>Nh3n</th>
+                <th>Cod</th>
+                <th>Tss</th>
+                <th>Debit</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var itemObj in StationXs)
+            {
+            <tr>
+                <td>@itemObj.TimeStamp</td>
+                <td>@itemObj.Ph</td>
+                <td>@itemObj.Nh3n</td>
+                <td>@itemObj.Cod</td>
+                <td>@itemObj.Tss</td>
+                <td>@itemObj.Debit</td>
+
+            </tr>
+            }
+        </tbody>
+    </table>
+}

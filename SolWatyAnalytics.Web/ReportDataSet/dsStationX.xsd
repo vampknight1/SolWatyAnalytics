@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsStationX" targetNamespace="http://tempuri.org/dsStationX.xsd" xmlns:mstns="http://tempuri.org/dsStationX.xsd" xmlns="http://tempuri.org/dsStationX.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection ConnectionStringObject="Dsn=PostgreSQL30;uid=postgres;pwd=P05tgre5123!" IsAppSettingsProperty="false" Modifier="Assembly" Name="ODBC.localhost.r_wwc" Provider="System.Data.Odbc" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="dtStationXTableAdapter" GeneratorDataComponentClassName="dtStationXTableAdapter" Name="dtStationX" UserDataComponentName="dtStationXTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ODBC.localhost.r_wwc" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT "public".station_x.*
+FROM   "public".station_x</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TimeStamp" DataSetColumn="TimeStamp" />
+              <Mapping SourceColumn="TimeStamp2" DataSetColumn="TimeStamp2" />
+              <Mapping SourceColumn="cod" DataSetColumn="cod" />
+              <Mapping SourceColumn="debit" DataSetColumn="debit" />
+              <Mapping SourceColumn="hum" DataSetColumn="hum" />
+              <Mapping SourceColumn="nh3n" DataSetColumn="nh3n" />
+              <Mapping SourceColumn="ph" DataSetColumn="ph" />
+              <Mapping SourceColumn="temp" DataSetColumn="temp" />
+              <Mapping SourceColumn="tss" DataSetColumn="tss" />
+              <Mapping SourceColumn="uid" DataSetColumn="uid" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsStationX" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsStationX" msprop:Generator_UserDSName="dsStationX">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtStationX" msprop:Generator_TableClassName="dtStationXDataTable" msprop:Generator_TableVarName="tabledtStationX" msprop:Generator_RowChangedName="dtStationXRowChanged" msprop:Generator_TablePropName="dtStationX" msprop:Generator_RowDeletingName="dtStationXRowDeleting" msprop:Generator_RowChangingName="dtStationXRowChanging" msprop:Generator_RowEvHandlerName="dtStationXRowChangeEventHandler" msprop:Generator_RowDeletedName="dtStationXRowDeleted" msprop:Generator_RowClassName="dtStationXRow" msprop:Generator_UserTableName="dtStationX" msprop:Generator_RowEvArgName="dtStationXRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TimeStamp" msprop:Generator_ColumnVarNameInTable="columnTimeStamp" msprop:Generator_ColumnPropNameInRow="TimeStamp" msprop:Generator_ColumnPropNameInTable="TimeStampColumn" msprop:Generator_UserColumnName="TimeStamp" type="xs:long" />
+              <xs:element name="TimeStamp2" msprop:Generator_ColumnVarNameInTable="columnTimeStamp2" msprop:Generator_ColumnPropNameInRow="TimeStamp2" msprop:Generator_ColumnPropNameInTable="TimeStamp2Column" msprop:Generator_UserColumnName="TimeStamp2" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="cod" msprop:Generator_ColumnVarNameInTable="columncod" msprop:Generator_ColumnPropNameInRow="cod" msprop:Generator_ColumnPropNameInTable="codColumn" msprop:Generator_UserColumnName="cod" type="xs:double" minOccurs="0" />
+              <xs:element name="debit" msprop:Generator_ColumnVarNameInTable="columndebit" msprop:Generator_ColumnPropNameInRow="debit" msprop:Generator_ColumnPropNameInTable="debitColumn" msprop:Generator_UserColumnName="debit" type="xs:double" minOccurs="0" />
+              <xs:element name="hum" msprop:Generator_ColumnVarNameInTable="columnhum" msprop:Generator_ColumnPropNameInRow="hum" msprop:Generator_ColumnPropNameInTable="humColumn" msprop:Generator_UserColumnName="hum" type="xs:double" minOccurs="0" />
+              <xs:element name="nh3n" msprop:Generator_ColumnVarNameInTable="columnnh3n" msprop:Generator_ColumnPropNameInRow="nh3n" msprop:Generator_ColumnPropNameInTable="nh3nColumn" msprop:Generator_UserColumnName="nh3n" type="xs:double" minOccurs="0" />
+              <xs:element name="ph" msprop:Generator_ColumnVarNameInTable="columnph" msprop:Generator_ColumnPropNameInRow="ph" msprop:Generator_ColumnPropNameInTable="phColumn" msprop:Generator_UserColumnName="ph" type="xs:double" minOccurs="0" />
+              <xs:element name="temp" msprop:Generator_ColumnVarNameInTable="columntemp" msprop:Generator_ColumnPropNameInRow="temp" msprop:Generator_ColumnPropNameInTable="tempColumn" msprop:Generator_UserColumnName="temp" type="xs:double" minOccurs="0" />
+              <xs:element name="tss" msprop:Generator_ColumnVarNameInTable="columntss" msprop:Generator_ColumnPropNameInRow="tss" msprop:Generator_ColumnPropNameInTable="tssColumn" msprop:Generator_UserColumnName="tss" type="xs:double" minOccurs="0" />
+              <xs:element name="uid" msprop:Generator_ColumnVarNameInTable="columnuid" msprop:Generator_ColumnPropNameInRow="uid" msprop:Generator_ColumnPropNameInTable="uidColumn" msprop:Generator_UserColumnName="uid" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="26" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dtStationX" />
+      <xs:field xpath="mstns:TimeStamp" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,84 @@
+﻿@page "/master/station"
+@inherits StationListBase
+@using SolWatyAnalytics.BLL.Models
+
+@inject IJSRuntime JSRuntime
+@implements IDisposable
+
+@attribute [Authorize]
+
+<h3>Station List</h3>
+<h6>Halaman pengadministrasian data master station</h6>
+<hr />
+
+@if (Stations == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    #region using BlazoriseDataGrid
+    @*<DataGrid TItem="Station" Data="Stations" Sortable="true" Filterable="true" Editable="true" ShowPager="true" PageSize="5">
+            <ChildContent>
+                <DataGridCommandColumn TItem="Station">
+                    <NewCommandTemplate>
+                        <Button Color="Color.Success" Clicked="@context.Clicked">Add Station</Button>
+                    </NewCommandTemplate>
+                    <EditCommandTemplate>
+                        <Button Color="Color.Primary" Clicked="@context.Clicked">Edit</Button>
+                    </EditCommandTemplate>
+                </DataGridCommandColumn>
+
+                <DataGridColumn TItem="Station" Field="@nameof(Station.StationUid)" Caption="Station Code" Editable="true"></DataGridColumn>
+                <DataGridColumn TItem="Station" Field="@nameof(Station.NameStation)" Caption="Station Name" Editable="true"></DataGridColumn>
+                <DataGridColumn TItem="Station" Field="@nameof(Station.AreaCode)" Caption="Area Name" Editable="true"></DataGridColumn>
+            </ChildContent>
+
+            <EmptyTemplate>
+                <div class="box">
+                    No Data are found !
+                </div>
+            </EmptyTemplate>
+        </DataGrid>*@
+    #endregion
+    <div class="row-fluid sortable">
+        <div class="box span12" style="margin-left: 0px">
+            <div class="box">
+                <a href="@("/master/station/add/")" id="btnCreate">
+                    <span class="oi oi-plus"></span>
+                    Add Station
+                </a>
+            </div>
+            <hr />
+            <table class="table" id="dtTable">
+                <thead>
+                    <tr>
+                        <th>-</th>
+                        <th>UID</th>
+                        <th>Station Name</th>
+                        <th>Area Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var itemObj in Stations)
+                    {
+                        <StationDisplay Station="itemObj" 
+                                        OnObjDeleted="ObjDeleted">
+                        </StationDisplay>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@code  {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeAsync<object>("DataTablesAdd", "#dtTable");
+    }
+    void IDisposable.Dispose()
+    {
+        JSRuntime.InvokeAsync<object>("DataTablesRemove", "#dtTable");
+    }
+}

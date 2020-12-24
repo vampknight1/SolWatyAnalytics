@@ -1,0 +1,94 @@
+﻿@page "/master/area"
+@inherits AreaListBase
+@using SolWatyAnalytics.BLL.Models
+
+@inject IJSRuntime JSRuntime
+@implements IDisposable
+
+@attribute [Authorize]
+
+<h3>Area List</h3>
+<h6>Halaman pengadministrasian data master area</h6>
+<hr />
+
+@if (Areas == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    #region using BlazoriseDataGrid
+    @*<DataGrid TItem="Area" Data="Areas" Sortable="true" Filterable="true" Editable="true" ShowPager="true" PageSize="5">
+            <ChildContent>
+                <DataGridCommandColumn TItem="Area">
+                    <NewCommandTemplate>
+                        <Button Color="Color.Success" Clicked="@context.Clicked">Add Area</Button>
+                    </NewCommandTemplate>
+                    <EditCommandTemplate>
+                        <Button Color="Color.Primary" Clicked="@context.Clicked">Edit</Button>
+                    </EditCommandTemplate>
+                </DataGridCommandColumn>
+
+                <DataGridColumn TItem="Area" Field="@nameof(Area.CodeArea)" Caption="Area Code" Editable="true"></DataGridColumn>
+                <DataGridColumn TItem="Area" Field="@nameof(Area.NameArea)" Caption="Area Name" Editable="true"></DataGridColumn>
+                <DataGridColumn TItem="Area" Field="@nameof(Area.CreatedAt)" Caption="Created At" Editable="true"></DataGridColumn>
+                <DataGridColumn TItem="Area" Field="@nameof(Area.UpdatedAt)" Caption="Updated At" Editable="true"></DataGridColumn>
+            </ChildContent>
+
+            <EmptyTemplate>
+                <div class="box">
+                    No Data are found !
+                </div>
+            </EmptyTemplate>
+        </DataGrid>*@
+    #endregion
+    <div class="row-fluid sortable">
+        <div class="box span12" style="margin-left: 0px">
+            <div class="box">
+                <a href="@("/master/area/add/")" id="btnCreate">
+                    <span class="oi oi-plus"></span>
+                    Add Area
+                </a>
+            </div>
+            <hr />
+            <table class="table" id="dtTable">
+                <thead>
+                    <tr>
+                        <th>-</th>
+                        <th>Area Code</th>
+                        <th>Area Name</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var itemObj in Areas)
+                    {
+                        <tr>
+                            <td>
+                                @*<a href="@($"/master/area/detail/{itemObj.Id}")" class=" btn btn-primary">View</a>*@
+                                <a href="@($"/master/area/edit/{itemObj.Id}")" class=" btn btn-info">Edit</a>
+                                <a href="@($"/master/area/delete/{itemObj.Id}")" class=" btn btn-danger">DEL</a>
+                            </td>
+                            <td>@itemObj.CodeArea</td>
+                            <td>@itemObj.NameArea</td>
+                            <td>@itemObj.CreatedAt</td>
+                            <td>@itemObj.UpdatedAt</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@code  {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeAsync<object>("DataTablesAdd", "#dtTable");
+    }
+    void IDisposable.Dispose()
+    {
+        JSRuntime.InvokeAsync<object>("DataTablesRemove", "#dtTable");
+    }
+}

@@ -1,0 +1,39 @@
+﻿@page "/master/customer"
+@inherits CustomerListBase
+@inject IJSRuntime JSRuntime
+@using SolWatyAnalytics.BLL.Models
+
+<h3>Customers List</h3>
+
+@if (Customers == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <DataGrid TItem="Customer" Data="Customers" Sortable="true" Filterable="true" Editable="true" ShowPager="true" PageSize="5">
+        <ChildContent>
+            <DataGridCommandColumn TItem="Customer">
+                <NewCommandTemplate>
+                    <Button Color="Color.Success" Clicked="@context.Clicked">Add Customer</Button>
+                </NewCommandTemplate>
+                <EditCommandTemplate>
+                    <Button Color="Color.Primary" Clicked="@context.Clicked">Edit</Button>
+                </EditCommandTemplate>
+            </DataGridCommandColumn>
+
+            <DataGridColumn TItem="Customer" Field="@nameof(Customer.CompanyName)" Caption="Company Name" Editable="true"></DataGridColumn>
+            <DataGridColumn TItem="Customer" Field="@nameof(Customer.Address)" Caption="Address" Editable="true"></DataGridColumn>
+            <DataGridColumn TItem="Customer" Field="@nameof(Customer.City)" Caption="City" Editable="true"></DataGridColumn>
+            <DataGridColumn TItem="Customer" Field="@nameof(Customer.ContactName)" Caption="Contact Person" Editable="true"></DataGridColumn>
+            <DataGridColumn TItem="Customer" Field="@nameof(Customer.Email)" Caption="Email" Editable="true"></DataGridColumn>
+            <DataGridColumn TItem="Customer" Field="@nameof(Customer.Uid)" Caption="UID" Editable="true"></DataGridColumn>
+        </ChildContent>
+
+        <EmptyTemplate>
+            <div class="box">
+                No Data are found !
+            </div>
+        </EmptyTemplate>
+    </DataGrid>
+}

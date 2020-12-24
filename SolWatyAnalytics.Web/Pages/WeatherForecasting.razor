@@ -1,0 +1,85 @@
+﻿@page "/weatherforecasting"
+
+@using SolWatyAnalytics.Web.Services
+@inject WeatherForecastService ForecastService
+
+@inject IJSRuntime JSRuntime
+@implements IDisposable
+
+<h1>Weather forecast</h1>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @*<DataGrid TItem="WeatherForecast" Data="@forecasts" Sortable="true" Filterable="true" Editable="true" ShowPager="true" PageSize="5">
+            <ChildContent>
+                <DataGridCommandColumn TItem="WeatherForecast">
+                    <NewCommandTemplate>
+                        <Button Color="Color.Success" Clicked="@context.Clicked">New</Button>
+                    </NewCommandTemplate>
+                    <EditCommandTemplate>
+                        <Button Color="Color.Primary" Clicked="@context.Clicked">Edit</Button>
+                    </EditCommandTemplate>
+                </DataGridCommandColumn>
+
+                <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.Date)" Caption="Date" Editable="true"></DataGridColumn>
+                <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.TemperatureC)" Caption="Temp (C)" Editable="true"></DataGridColumn>
+                <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.TemperatureF)" Caption="Temp (F)" Editable="true"></DataGridColumn>
+                <DataGridColumn TItem="WeatherForecast" Field="@nameof(WeatherForecast.Summary)" Caption="Summary" Editable="true"></DataGridColumn>
+            </ChildContent>
+
+            <EmptyTemplate>
+                <div class="box">
+                    No Data are found !
+                </div>
+            </EmptyTemplate>
+        </DataGrid>*@
+
+    <table class="table" id="dtTable">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    //private WeatherForecast[] forecasts;
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    //}
+
+    private WeatherForecast[] forecasts;
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeAsync<object>("DataTablesAdd", "#dtTable");
+    }
+    void IDisposable.Dispose()
+    {
+        JSRuntime.InvokeAsync<object>("DataTablesRemove", "#dtTable");
+    }
+}

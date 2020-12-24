@@ -1,0 +1,1 @@
+Scaffold-DbContext "server=127.0.0.1;database=r_wwc;user id=postgres;password=P05tgre5123!;"Npgsql.EntityFrameworkCore.PostgreSQL -OutputDir Models

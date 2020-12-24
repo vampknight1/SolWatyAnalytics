@@ -1,0 +1,72 @@
+﻿<div class="top-row pl-1 navbar navbar-dark">
+    <img class="logo" width="117" height="40" style="float:right" src="/img/logo.png" />
+</div>
+<div class="top-row pl-1 navbar navbar-dark">
+    <ul>
+        <li class="align-self-center">
+            <a class="navbar-brand" href="">Waste Water Analytics</a>
+            <button class="navbar-toggler" @onclick="ToggleNavMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </li>
+        <li class="time">
+            <h1 class="animated fadeInLeft">21:00:59</h1>
+            <p class="animated fadeInRight">Sat,October 1st 2029</p>
+        </li>
+    </ul>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <RadzenPanelMenu>
+        <AuthorizeView>
+            <Authorized>
+                @*<RadzenPanelMenuItem Text="Dashboard" Path="/dashboard" Icon="gauge"></RadzenPanelMenuItem>*@
+                <RadzenPanelMenuItem Text="RBAC" Icon="locked">
+                    <RadzenPanelMenuItem Text="User" Path="/rbac/user" Icon="people"></RadzenPanelMenuItem>
+                    <RadzenPanelMenuItem Text="Role" Path="/rbac/role" Icon="account_box"></RadzenPanelMenuItem>
+                </RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Text="Master" Icon="list">
+                    <RadzenPanelMenuItem Text="Area" Path="/master/area" Icon="pin_drop"></RadzenPanelMenuItem>
+                    <RadzenPanelMenuItem Text="Station" Path="/master/station" Icon="home_work" @onclick="HandleClick"></RadzenPanelMenuItem>
+                </RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Text="Station" Icon="language">
+                    <RadzenPanelMenuItem Text="Station Pusat" Path="/station/stationpusat" Icon="laptop_mac"></RadzenPanelMenuItem>
+                </RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Text="Report" Icon="print">
+                    <RadzenPanelMenuItem Text="Daily Report" Path="report/daily" Icon="today"></RadzenPanelMenuItem>
+                    <RadzenPanelMenuItem Text="Monthly Report" Path="report/monthly" Icon="calendar_today"></RadzenPanelMenuItem>
+                </RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Text="Logout" Path="/identity/account/logout" Icon="settings_power"></RadzenPanelMenuItem>
+            </Authorized>
+        </AuthorizeView>
+
+        <AuthorizeView Roles="User">
+            <RadzenPanelMenuItem Text="Station Pusat" Path="/station/stationpusat" Icon="laptop_mac"></RadzenPanelMenuItem>
+        </AuthorizeView>
+    </RadzenPanelMenu>
+</div>
+
+@*<div class="top-row pl-4 navbar navbar-dark">
+        <img class="logo" width="117" height="40" style="float:right" src="/img/logo.png" />
+        <button class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>*@
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    @inject NavigationManager NavigationManager;
+
+    private void HandleClick()
+    {
+        NavigationManager.NavigateTo("/master/station", true);
+    }
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

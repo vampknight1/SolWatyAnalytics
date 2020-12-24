@@ -1,0 +1,95 @@
+﻿@page "/station/stationpusat"
+@inherits StationPusatAnalyticsListBase
+@using SolWatyAnalytics.BLL.Models
+
+<h3 style="text-align:center">@PageHeaderText - @StationUid</h3>
+
+@if (StationXs == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <RadzenGrid AllowFiltering="true" AllowPaging="true" AllowSorting="true"
+                FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                Data="@StationXs" TItem="StationX"
+                RowRender="@RowRender" CellRender="@CellRender"
+                ColumnWidth="100px" PageSize="3">
+        <Columns>
+            <RadzenGridColumn TItem="StationX" Property="TimeStamp2" Title="Date" FormatString="{0:d}" />
+            <RadzenGridColumn TItem="StationX" Property="TimeStamp2" Title="Time" FormatString="{0:HH:mm:ss}" />
+            <RadzenGridColumn TItem="StationX" Property="Ph" Title="pH">
+                <Template Context="data">
+                    @if (data.Ph >= 15)
+                    {
+                        <span style='color:white'>@data.Ph</span>
+                    }
+                    else
+                    {
+                        <span style='color:black'>@data.Ph</span>
+                    }
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="StationX" Property="Nh3n" Title="NH3N" />
+            <RadzenGridColumn TItem="StationX" Property="Cod" Title="COD" />
+            <RadzenGridColumn TItem="StationX" Property="Tss" Title="TSS" />
+            <RadzenGridColumn TItem="StationX" Property="Debit" Title="Debit" FormatString="{0:N}" />
+        </Columns>
+    </RadzenGrid>
+
+    <div class="card m-auto" style="position:absolute; right:20px">
+        <div class="card-header">
+            <h5 style="text-align:center">.:: Measurement Criteria ::.</h5>
+        </div>
+        <div class="card-body">
+            <table class="table-bordered" style="width:100%">
+                <tr>
+                    <th rowspan="2" colspan="2" style="text-align:center">Parameter Type</th>
+                    <th colspan="2" style="text-align:center;background-color:red">Red</th>
+                    <th colspan="2" style="text-align:center;background-color:yellow">Yellow</th>
+                </tr>
+                <tr>
+                    <th style="text-align:center">Upperest Limit <br />(HH)</th>
+                    <th style="text-align:center">Lowest Limit <br />(LL)</th>
+                    <th style="text-align:center">Upper Limit <br />(H)</th>
+                    <th style="text-align:center">Lower Limit <br />(L)</th>
+                </tr>
+                <tr>
+                    <td>pH</td>
+                    <td>(0 - 14 units)</td>
+                    <td> &gt; 14</td>
+                    <td> &lt; 0</td>
+                    <td> = 14</td>
+                    <td> = 0</td>
+                </tr>
+                <tr>
+                    <td>NH3N</td>
+                    <td>(0 - 10.000 mg/l)</td>
+                    <td> &gt; 10000</td>
+                    <td> &lt; 0</td>
+                    <td> &ge; 9000 &le; 10000</td>
+                    <td> &gt; 0 &le; 1000</td>
+                </tr>
+                <tr>
+                    <td>COD</td>
+                    <td>(0,1 ~ 5.000 mg/l)</td>
+                    <td> &gt; 5000</td>
+                    <td> &lt; 0.1</td>
+                    <td> &ge; 4500 &le; 5000</td>
+                    <td> &gt; 0.1 &le; 500</td>
+                </tr>
+                <tr>
+                    <td>TSS</td>
+                    <td>(0 - 3.000 mg/l)</td>
+                    <td> &gt; 3000</td>
+                    <td> &lt; 0</td>
+                    <td> &ge; 2700 &le; 3000</td>
+                    <td> &gt; 0 &le; 300</td>
+                </tr>
+                <tr>
+                    <td colspan="6">Debit : menyesuaikan dengan output debit air limbah</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}

@@ -1,0 +1,16 @@
+﻿@page "/master/area/detail/{id}"
+@inherits AreaDetailBase
+
+    <h3>Area Detail</h3>
+
+    <div class="form-row">
+        <h5>Code Area</h5>  :  @Area.CodeArea
+        <h5>Name Area</h5>  :  @Area.NameArea
+        <h5>Created At</h5> :  @Area.CreatedAt
+        <h5>Updated At</h5> :  @Area.UpdatedAt
+        <h5>Updated By</h5> :  @Area.UpdatedBy
+    </div>
+
+    <a href="/master/area" class="btn btn-primary">Back</a>
+    <a href="@($"/master/area/edit/{@Area.Id}")" class=" btn btn-info">Edit</a>
+    <a href="#" class="btn btn-danger">Delete</a>
